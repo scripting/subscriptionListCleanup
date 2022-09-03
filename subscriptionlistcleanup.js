@@ -1,4 +1,4 @@
-const myVersion = "0.4.0", myProductName = "debugsubscriptionlist"; 
+const myVersion = "0.4.1", myProductName = "debugsubscriptionlist";  
 
 const utils = require ("daveutils");
 const fs = require ("fs");
@@ -8,8 +8,7 @@ const reallysimple = require ("reallysimple");
 
 const config = {
 	urlSource: "http://scripting.com/code/subscriptionlistcleanup/nba.opml",
-	timeoutSecs: 5,
-	newOutlineFile: "newOutline.opml"
+	timeoutSecs: 5
 	}
 
 function httpRequest (url, callback) {
@@ -91,5 +90,3 @@ httpRequest (config.urlSource, function (err, opmltext) {
 			});
 		}
 	});
-
-
