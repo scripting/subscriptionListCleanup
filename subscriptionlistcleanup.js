@@ -1,4 +1,4 @@
-const myVersion = "0.4.1", myProductName = "debugsubscriptionlist";  
+const myVersion = "0.4.1", myProductName = "debugsubscriptionlist";   
 
 const utils = require ("daveutils");
 const fs = require ("fs");
@@ -7,7 +7,7 @@ const opml = require ("opml");
 const reallysimple = require ("reallysimple");
 
 const config = {
-	urlSource: "http://scripting.com/code/subscriptionlistcleanup/nba.opml",
+	urlSource: "http://scripting.com/code/subscriptionlistcleanup/washpost.opml",
 	timeoutSecs: 5
 	}
 

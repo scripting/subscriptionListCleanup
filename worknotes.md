@@ -1,3 +1,7 @@
+#### 10/23/22; 11:27:38 AM by DW
+
+Moved it to its own repo. It's generally useful, not just in using FeedLand. 
+
 #### 8/5/22; 4:46:07 PM by DW
 
 Wrote docs, removed an old config element. Moved to the feedlandSupport repo.
