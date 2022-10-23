@@ -1,4 +1,4 @@
-const myVersion = "0.4.1", myProductName = "debugsubscriptionlist";   
+const myVersion = "0.4.2", myProductName = "subscriptionlistcleanup";   
 
 const utils = require ("daveutils");
 const fs = require ("fs");
