@@ -8,9 +8,21 @@ You have to be a JavaScript programmer to use it.
 
 #### How to use
 
-Upload the subscription list somewhere, and change config.urlSource to point to the list.
+You can run the app without command line arguments or with. 
 
-Run the app. It'll create an OPML with the same name that contains only the feeds it was able to read and correctly parse as a feed. 
+Without them, it reads the file specified by config.urlSource, which you can of course change. 
+
+With command line arguments, you can specify whether you want to read from a file or over the web, and which file or URL you want to read. 
+
+Here are three examples that illustrate:
+
+1. node subscriptionlistcleanup.js
+
+2. node subscriptionlistcleanup.js -f mlb.opml 
+
+3. node subscriptionlistcleanup.js -u http://scripting.com/code/subscriptionlistcleanup/mlb.opml
+
+In all cases it will create a file in the data sub-folder with the same name as the original file that contains only the feeds it was able to read and correctly parse as a feed.
 
 #### Why?
 

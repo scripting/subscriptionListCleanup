@@ -1,4 +1,4 @@
-const myVersion = "0.4.2", myProductName = "subscriptionlistcleanup";   
+const myVersion = "0.4.3", myProductName = "subscriptionlistcleanup";   
 
 const utils = require ("daveutils");
 const fs = require ("fs");
@@ -8,8 +8,11 @@ const reallysimple = require ("reallysimple");
 
 const config = {
 	urlSource: "http://scripting.com/code/subscriptionlistcleanup/washpost.opml",
+	dataFolder: "data/",
 	timeoutSecs: 5
 	}
+
+var fnameSavedFile;
 
 function httpRequest (url, callback) {
 	var theRequest = {
@@ -36,11 +39,16 @@ function notComment (item) { //return true if the outline element is not a comme
 	return (!utils.getBoolean (item.isComment));
 	}
 function writeOutline (theOutline) {
-	var fname = utils.stringLastField (config.urlSource, "/");
-	fs.writeFileSync (fname, opml.stringify (theOutline));
+	var f = config.dataFolder + fnameSavedFile;
+	utils.sureFilePath (f, function () {
+		fs.writeFile (f, opml.stringify (theOutline), function (err) {
+			if (err) {
+				console.log (err.message);
+				}
+			});
+		});
 	}
-
-httpRequest (config.urlSource, function (err, opmltext) {
+function cleanup (err, opmltext) {
 	if (err) {
 		console.log (err.message);
 		}
@@ -89,4 +97,28 @@ httpRequest (config.urlSource, function (err, opmltext) {
 				}
 			});
 		}
-	});
+	}
+function cleanupOverHttp (urlSource) {
+	fnameSavedFile = utils.stringLastField (urlSource, "/"); //set global
+	httpRequest (urlSource, cleanup);
+	}
+function cleanupFile (f) {
+	fnameSavedFile = utils.stringLastField (f, "/"); //set global
+	fs.readFile (f, cleanup);
+	}
+if (process.argv.length >= 4) { //there's a command line argument
+	switch (process.argv [2]) {
+		case "-f":
+			cleanupFile (process.argv [3]);
+			break;
+		case "-u":
+			cleanupOverHttp (process.argv [3]);
+			break;
+		default: 
+			console.log ("The supported options are -f and -u.");
+			break;
+		}
+	}
+else {
+	cleanupOverHttp (config.urlSource);
+	}

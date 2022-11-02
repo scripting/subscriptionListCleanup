@@ -1,3 +1,7 @@
+#### 11/2/22; 10:31:40 AM by DW
+
+Support command line arguments
+
 #### 10/23/22; 11:27:38 AM by DW
 
 Moved it to its own repo. It's generally useful, not just in using FeedLand. 
